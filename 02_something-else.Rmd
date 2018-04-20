@@ -1,0 +1,37 @@
+---
+title: "Step 2"
+---
+
+This breaks because `lubridate::here()` and `here::here()` conflict, but *only* when rendering the whole site with `rmarkdown::render_site()`.
+
+```{r nuke-packages}
+# Unload all the already-loaded packages because R Markdown websites *don't* knit 
+# each Rmd in a separate environment: https://github.com/rstudio/rmarkdown/issues/1326
+#
+# This means that here::here() and lubridate::here() will conflict becuase here
+# has already been loaded in previous scripts
+if (isTRUE(getOption('knitr.in.progress')) & !is.null(names(sessionInfo()$otherPkgs))) {
+  invisible(suppressWarnings(sapply(paste0("package:", names(sessionInfo()$otherPkgs)),
+                                    detach, character.only = TRUE, unload = TRUE)))
+}
+```
+
+```{r message=FALSE, warning=FALSE}
+# Load libraries anew
+library(tidyverse)
+library(lubridate)
+library(here)
+
+# Use x from 01_something.Rmd
+# THIS SHOULDN'T WORK BUT IT DOES <GRUMBLE>
+x
+
+# Do something with lubridate
+my_date <- ymd("2018-04-19")
+
+# Try to use here() and it breaks when rendering the whole site
+# It works just fine when knitting this file on its own, though, since here is loaded after lubridate
+cars <- read_csv(file.path(here(), "data", "cars.csv"))
+
+head(cars)
+```

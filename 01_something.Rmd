@@ -1,0 +1,15 @@
+---
+title: "Step 1"
+---
+
+Write some data just for fun.
+
+```{r}
+library(tidyverse)
+library(here)
+
+write_csv(mtcars, file.path(here(), "data", "cars.csv"))
+
+# Set a variable and don't use it
+x <- 14
+```

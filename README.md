@@ -33,10 +33,12 @@ When building the whole site, though, each `.Rmd` file shares the same environme
 
 - **Unload all the packages at the top of the `.Rmd` that's causing conflicts**: This is the nuclear option and goes against the philosophy of having standalone R Markdown files, but ¯\\\_(ツ)\_/¯. Use this incantation to unload any packages that are already loaded, then load the libraries you need:
 
-        if (isTRUE(getOption('knitr.in.progress')) & !is.null(names(sessionInfo()$otherPkgs))) {
-          invisible(suppressWarnings(sapply(paste0("package:", names(sessionInfo()$otherPkgs)),
-                                            detach, character.only = TRUE, unload = TRUE)))
-        }
+    ```r
+    if (isTRUE(getOption('knitr.in.progress')) & !is.null(names(sessionInfo()$otherPkgs))) {
+      invisible(suppressWarnings(sapply(paste0("package:", names(sessionInfo()$otherPkgs)),
+                                        detach, character.only = TRUE, unload = TRUE)))
+    }
+    ```
 
 - **Use an alternative system**: The [**workflowr**](https://jdblischak.github.io/workflowr/) package is designed to run each `.Rmd` in a separate environment, but it's also more complicated than building with **rmarkdown**. It uses its own system to build, commit to git, and publish sites and relies on its own folder structure.
 

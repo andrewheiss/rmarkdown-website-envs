@@ -25,7 +25,7 @@ When building the whole site, though, each `.Rmd` file shares the same environme
 
 ## Solutions
 
-- **Don't use R Markdown websites and use blogdown instead**: Sure, **blogdown** is great and I use the heck out of it for other things, but it's generally overkill for smaller project-specific sites. Plus, R Markdown websites exist for a reason—they're easy to use and set up. 
+- **Don't use R Markdown websites and use blogdown instead**: Sure, **blogdown** is great and [I use](https://econw18.classes.andrewheiss.com/) the [heck out](https://datavizf17.classes.andrewheiss.com/) of it for [other things](https://storiesf17.classes.andrewheiss.com/), but it's generally overkill for smaller project-specific sites. Plus, R Markdown websites exist for a reason—they're easy to use and set up. 
 
 - **Live with it**: I've been building project-specific sites with R Markdown for a couple years and just barely ran into this issue, so this is definitely an edge case. Write your code as if each `.Rmd` file stands alone (i.e. pass R objects between files with `saveRDS()` and `readRDS()`, etc.) and everything should normally be fine.
 

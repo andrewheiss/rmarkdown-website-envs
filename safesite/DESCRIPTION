@@ -1,0 +1,14 @@
+Package: safesite
+Title: Safely create a website from R Markdown files
+Version: 0.0.0.9000
+Authors: John Blischak
+Description: Modifies rmarkdown:::default_site to build each R Markdown file in a
+  separate, isolated R process. Avoids namespace and variable conflicts between
+  independent R Markdown files.
+Depends: R (>= 3.3.3),
+  rmarkdown
+Imports: callr
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1

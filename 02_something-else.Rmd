@@ -4,16 +4,9 @@ title: "Step 2"
 
 This breaks because `lubridate::here()` and `here::here()` conflict, but *only* when rendering the whole site with `rmarkdown::render_site()`.
 
-```{r nuke-packages}
-# Unload all the already-loaded packages because R Markdown websites *don't* knit 
-# each Rmd in a separate environment: https://github.com/rstudio/rmarkdown/issues/1326
-#
-# This means that here::here() and lubridate::here() will conflict becuase here
-# has already been loaded in previous scripts
-if (isTRUE(getOption('knitr.in.progress')) & !is.null(names(sessionInfo()$otherPkgs))) {
-  invisible(suppressWarnings(sapply(paste0("package:", names(sessionInfo()$otherPkgs)),
-                                    detach, character.only = TRUE, unload = TRUE)))
-}
+```{r loaded-packages}
+search()
+ls()
 ```
 
 ```{r message=FALSE, warning=FALSE}
@@ -24,7 +17,7 @@ library(here)
 
 # Use x from 01_something.Rmd
 # THIS SHOULDN'T WORK BUT IT DOES <GRUMBLE>
-x
+exists("x")
 
 # Do something with lubridate
 my_date <- ymd("2018-04-19")

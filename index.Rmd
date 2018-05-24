@@ -1,5 +1,6 @@
 ---
 title: "My Website"
+site: safesite::safesite
 ---
 
 Hello, Website!
